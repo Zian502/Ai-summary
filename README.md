@@ -1,4 +1,4 @@
-# 🚀 AI 编程学习文档集合 | Comprehensive Programming Documentation
+# 🚀 编程学习文档集合 | Comprehensive Programming Documentation
 
 > 📚 **多语言编程教程集合** | 从零基础到高级进阶，涵盖 C++、Python、Rust、Go、Node.js 等主流编程语言的完整学习路径
 
