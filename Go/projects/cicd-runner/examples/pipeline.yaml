@@ -1,0 +1,42 @@
+name: example-pipeline
+version: "1.0"
+workspace: /tmp/cicd-workspace
+
+env:
+  PROJECT_NAME: "cicd-runner"
+  BUILD_VERSION: "0.1.0"
+
+concurrency: 1  # 并发执行数，1 表示串行执行
+
+steps:
+  - name: build
+    image: golang:1.21
+    commands:
+      - echo "Building project..."
+      - go build -o app ./...
+      - echo "Build completed"
+    env:
+      CGO_ENABLED: "0"
+    timeout: 300
+    on_success:
+      - echo "Build step succeeded"
+    on_failure:
+      - echo "Build step failed"
+
+  - name: test
+    image: golang:1.21
+    commands:
+      - echo "Running tests..."
+      - go test -v ./...
+      - echo "Tests completed"
+    timeout: 300
+    when: always
+
+  - name: lint
+    image: golangci/golangci-lint:latest
+    commands:
+      - echo "Running linter..."
+      - echo "Lint check completed (mock)"
+    timeout: 120
+    when: always
+
